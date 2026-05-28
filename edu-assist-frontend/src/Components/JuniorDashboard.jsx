@@ -52,35 +52,35 @@ const JuniorDashboard = () => {
 
   useEffect(() => {
     const storedUser = localStorage.getItem('juniorUser');
-const role = localStorage.getItem('role');
+    const role = localStorage.getItem('role');
 
-if (!storedUser || role !== 'junior') {
-  navigate('/login/junior');
-  return;
-}
+    if (!storedUser || role !== 'junior') {
+      navigate('/login/junior');
+      return;
+    }
 
-try {
-  const parsed = JSON.parse(storedUser);
-  const hasRollNumber = parsed.rollNumber && String(parsed.rollNumber).trim();
-  const hasUploadedPhoto =
-    parsed.photo &&
-    String(parsed.photo).trim() &&
-    !String(parsed.photo).trim().startsWith('http');
+    try {
+      const parsed = JSON.parse(storedUser);
+      const hasRollNumber = parsed.rollNumber && String(parsed.rollNumber).trim();
+      const hasUploadedPhoto =
+        parsed.photo &&
+        String(parsed.photo).trim() &&
+        !String(parsed.photo).trim().startsWith('http');
 
-  if (!hasRollNumber || !hasUploadedPhoto) {
-    navigate('/complete-profile/junior');
-    return;
-  }
+      if (!hasRollNumber || !hasUploadedPhoto) {
+        navigate('/complete-profile/junior');
+        return;
+      }
 
-  setUser(parsed);
-  fetchProfile(parsed.id);
-  fetchMyDoubts(parsed.id);
-} catch (err) {
-  localStorage.removeItem('juniorUser');
-  localStorage.removeItem('juniorUserId');
-  localStorage.removeItem('role');
-  navigate('/login/junior');
-}
+      setUser(parsed);
+      fetchProfile(parsed.id);
+      fetchMyDoubts(parsed.id);
+    } catch (err) {
+      localStorage.removeItem('juniorUser');
+      localStorage.removeItem('juniorUserId');
+      localStorage.removeItem('role');
+      navigate('/login/junior');
+    }
 
   }, [navigate]);
 
@@ -91,28 +91,28 @@ try {
       const res = await axios.get(buildApiUrl(`/api/junior/profile/${id}`));
       if (res.data.status) {
         const student = res.data.student;
-setProfile(student);
+        setProfile(student);
 
-const updatedUser = {
-  id: student.id,
-  photo: student.photo,
-  name: student.name,
-  email: student.email,
-  rollNumber: student.rollNumber,
-  verified: student.verified,
-  autoVerified: student.autoVerified
-};
+        const updatedUser = {
+          id: student.id,
+          photo: student.photo,
+          name: student.name,
+          email: student.email,
+          rollNumber: student.rollNumber,
+          verified: student.verified,
+          autoVerified: student.autoVerified
+        };
 
-setUser(updatedUser);
-localStorage.setItem('juniorUser', JSON.stringify(updatedUser));
-localStorage.setItem('juniorUserId', student.id);
+        setUser(updatedUser);
+        localStorage.setItem('juniorUser', JSON.stringify(updatedUser));
+        localStorage.setItem('juniorUserId', student.id);
 
-setEditForm({
-  name: student.name || '',
-  email: student.email || '',
-  rollNumber: student.rollNumber || '',
-  password: ''
-});
+        setEditForm({
+          name: student.name || '',
+          email: student.email || '',
+          rollNumber: student.rollNumber || '',
+          password: ''
+        });
 
       } else {
         setProfileError('Profile not found');
@@ -322,11 +322,11 @@ setEditForm({
   };
 
   const handleLogout = () => {
-  localStorage.removeItem('juniorUser');
-  localStorage.removeItem('juniorUserId');
-  localStorage.removeItem('role');
-  navigate('/login/junior');
-};
+    localStorage.removeItem('juniorUser');
+    localStorage.removeItem('juniorUserId');
+    localStorage.removeItem('role');
+    navigate('/login/junior');
+  };
 
   const getStatusBadge = (status) => {
     const styles = {
@@ -665,11 +665,10 @@ setEditForm({
                                 (chatMessages[doubt.id] || []).map((msg) => (
                                   <div
                                     key={msg.id}
-                                    className={`p-3 rounded-lg ${
-                                      msg.senderRole === 'JUNIOR'
-                                        ? 'bg-indigo-100 ml-8'
-                                        : 'bg-white mr-8 border'
-                                    }`}
+                                    className={`p-3 rounded-lg ${msg.senderRole === 'JUNIOR'
+                                      ? 'bg-indigo-100 ml-8'
+                                      : 'bg-white mr-8 border'
+                                      }`}
                                   >
                                     <div className="flex justify-between items-center mb-1 gap-3">
                                       <span className="text-sm font-semibold text-gray-800">{msg.senderName}</span>
@@ -713,22 +712,22 @@ setEditForm({
                             </h4>
                             <p className="text-gray-800 whitespace-pre-line mb-4">{doubt.solutionText}</p>
 
-                              {doubt.solutionPic && (
-                                <div className="mt-4">
-                                  <a
-                                    href={buildAssetUrl(doubt.solutionPic)}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="inline-flex items-center gap-3 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 hover:bg-gray-100 transition"
-                                  >
-                                    <ImageIcon size={18} className="text-green-600" />
-                                    <div className="text-left">
-                                      <p className="text-sm font-semibold text-gray-800">View solution attachment</p>
-                                      <p className="text-xs text-gray-500">{doubt.solutionPic}</p>
-                                    </div>
-                                  </a>
-                                </div>
-                              )}
+                            {doubt.solutionPic && (
+                              <div className="mt-4">
+                                <a
+                                  href={buildAssetUrl(doubt.solutionPic)}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="inline-flex items-center gap-3 rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 hover:bg-gray-100 transition"
+                                >
+                                  <ImageIcon size={18} className="text-green-600" />
+                                  <div className="text-left">
+                                    <p className="text-sm font-semibold text-gray-800">View solution attachment</p>
+                                    <p className="text-xs text-gray-500">{doubt.solutionPic}</p>
+                                  </div>
+                                </a>
+                              </div>
+                            )}
                             {/* Show rating/comment if already submitted */}
                             {hasRated && (
                               <div className="mt-6 p-4 bg-indigo-50 rounded-lg">
@@ -768,9 +767,9 @@ setEditForm({
                                         key={star}
                                         type="button"
                                         onClick={() => setRating(star)}
-                                        className={`text-3xl ${rating >= star ? 'text-amber-500' : 'text-gray-300'}`}
+                                        className={`transition-all ${rating >= star ? 'text-amber-400 scale-110' : 'text-gray-400 hover:text-amber-300'}`}
                                       >
-                                        ★
+                                        <Star size={32} className={rating >= star ? 'fill-amber-400' : 'fill-gray-300'} />
                                       </button>
                                     ))}
                                   </div>
@@ -791,11 +790,10 @@ setEditForm({
                                   <button
                                     onClick={() => handleSubmitRemarks(doubt.id)}
                                     disabled={submittingRemark || rating === 0}
-                                    className={`px-6 py-3 rounded-lg font-medium transition ${
-                                      submittingRemark || rating === 0
-                                        ? 'bg-gray-400 cursor-not-allowed text-white'
-                                        : 'bg-indigo-600 hover:bg-indigo-700 text-white'
-                                    }`}
+                                    className={`px-6 py-3 rounded-lg font-medium transition ${submittingRemark || rating === 0
+                                      ? 'bg-gray-400 cursor-not-allowed text-white'
+                                      : 'bg-indigo-600 hover:bg-indigo-700 text-white'
+                                      }`}
                                   >
                                     {submittingRemark ? 'Submitting...' : 'Submit Rating & Comment'}
                                   </button>
@@ -900,9 +898,8 @@ setEditForm({
                     <button
                       type="submit"
                       disabled={updatingProfile}
-                      className={`flex-1 py-3 rounded-lg font-medium text-white transition ${
-                        updatingProfile ? 'bg-gray-400 cursor-not-allowed' : 'bg-indigo-600 hover:bg-indigo-700'
-                      }`}
+                      className={`flex-1 py-3 rounded-lg font-medium text-white transition ${updatingProfile ? 'bg-gray-400 cursor-not-allowed' : 'bg-indigo-600 hover:bg-indigo-700'
+                        }`}
                     >
                       {updatingProfile ? 'Saving...' : 'Save Changes'}
                     </button>
@@ -920,11 +917,10 @@ setEditForm({
                   </div>
 
                   {updateMsg.text && (
-                    <div className={`mt-6 p-4 rounded-xl text-center border ${
-                      updateMsg.type === 'success' ? 'bg-green-50 text-green-800 border-green-200' :
+                    <div className={`mt-6 p-4 rounded-xl text-center border ${updateMsg.type === 'success' ? 'bg-green-50 text-green-800 border-green-200' :
                       updateMsg.type === 'error' ? 'bg-red-50 text-red-800 border-red-200' :
-                      'bg-blue-50 text-blue-800 border-blue-200'
-                    }`}>
+                        'bg-blue-50 text-blue-800 border-blue-200'
+                      }`}>
                       {updateMsg.text}
                     </div>
                   )}

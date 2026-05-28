@@ -46,6 +46,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+body.ea-dark-body {
+  background: #020617 !important;
+}
+
 ::selection {
   color: white;
   background: rgba(79, 70, 229, 0.85);
