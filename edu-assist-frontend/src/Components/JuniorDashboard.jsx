@@ -552,9 +552,16 @@ const JuniorDashboard = () => {
         {activeSection === 'my-doubts' && (
           <div className="space-y-6">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-              <h2 className="text-2xl font-bold text-gray-900">My Doubts</h2>
+              <h2 className="text-2xl font-bold text-white">My Doubts</h2>  
 
               <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                <button
+    onClick={() => fetchMyDoubts(user.id)}
+    className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium whitespace-nowrap"
+  >
+    Refresh
+  </button>
+
                 <div className="relative flex-1 min-w-[200px]">
                   <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
                   <input

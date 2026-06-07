@@ -94,9 +94,9 @@ const AdminDashboard = () => {
       if (isOk(juniorsRes)) {
         setJuniors(
           juniorsRes.value.data.juniors ||
-            juniorsRes.value.data.students ||
-            juniorsRes.value.data.data ||
-            []
+          juniorsRes.value.data.students ||
+          juniorsRes.value.data.data ||
+          []
         );
       } else {
         setJuniors([]);
@@ -105,9 +105,9 @@ const AdminDashboard = () => {
       if (isOk(seniorsRes)) {
         setSeniors(
           seniorsRes.value.data.seniors ||
-            seniorsRes.value.data.students ||
-            seniorsRes.value.data.data ||
-            []
+          seniorsRes.value.data.students ||
+          seniorsRes.value.data.data ||
+          []
         );
       } else {
         setSeniors([]);
@@ -116,9 +116,9 @@ const AdminDashboard = () => {
       if (isOk(doubtsRes)) {
         setDoubts(
           doubtsRes.value.data.Doubts ||
-            doubtsRes.value.data.doubts ||
-            doubtsRes.value.data.data ||
-            []
+          doubtsRes.value.data.doubts ||
+          doubtsRes.value.data.data ||
+          []
         );
       } else {
         setDoubts([]);
@@ -181,13 +181,13 @@ const AdminDashboard = () => {
     const endpoints =
       type === 'junior'
         ? [
-            buildApiUrl(`/api/admin/verify-junior/${id}`),
-            buildApiUrl(`/api/admin/juniors/verify/${id}`)
-          ]
+          buildApiUrl(`/api/admin/verify-junior/${id}`),
+          buildApiUrl(`/api/admin/juniors/verify/${id}`)
+        ]
         : [
-            buildApiUrl(`/api/admin/verify-senior/${id}`),
-            buildApiUrl(`/api/admin/seniors/verify/${id}`)
-          ];
+          buildApiUrl(`/api/admin/verify-senior/${id}`),
+          buildApiUrl(`/api/admin/seniors/verify/${id}`)
+        ];
 
     try {
       const res = await tryPost(endpoints);
@@ -485,23 +485,22 @@ const AdminDashboard = () => {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`flex-1 min-w-[120px] py-4 px-6 text-center font-medium transition-all ${
-                activeTab === tab
-                  ? 'border-b-4 border-indigo-600 text-indigo-700 bg-indigo-50'
-                  : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50'
-              }`}
+              className={`flex-1 min-w-[120px] py-4 px-6 text-center font-medium transition-all ${activeTab === tab
+                ? 'border-b-4 border-indigo-600 text-indigo-700 bg-indigo-50'
+                : 'text-gray-600 hover:text-indigo-600 hover:bg-gray-50'
+                }`}
             >
               {tab === 'juniors'
                 ? 'Juniors'
                 : tab === 'seniors'
-                ? 'Seniors'
-                : tab === 'doubts'
-                ? 'Posted Doubts'
-                : tab === 'help'
-                ? 'Help Requests'
-                : tab === 'leaderboard'
-                ? 'Leaderboard'
-                : 'Admin Profile'}
+                  ? 'Seniors'
+                  : tab === 'doubts'
+                    ? 'Posted Doubts'
+                    : tab === 'help'
+                      ? 'Help Requests'
+                      : tab === 'leaderboard'
+                        ? 'Leaderboard'
+                        : 'Admin Profile'}
             </button>
           ))}
         </div>
@@ -517,7 +516,7 @@ const AdminDashboard = () => {
             {activeTab === 'juniors' && (
               <div>
                 <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-2xl font-bold text-gray-800">
+                  <h2 className="text-2xl font-bold text-white">
                     Junior MCA Students ({juniors.length})
                   </h2>
                   <button
@@ -573,11 +572,10 @@ const AdminDashboard = () => {
                                     <button
                                       onClick={() => handleVerifyStudent('junior', item.id)}
                                       disabled={actionLoading[`junior-${item.id}`]}
-                                      className={`px-3 py-1.5 rounded-md text-xs font-medium transition ${
-                                        actionLoading[`junior-${item.id}`]
-                                          ? 'bg-gray-300 cursor-not-allowed'
-                                          : 'bg-green-600 hover:bg-green-700 text-white'
-                                      }`}
+                                      className={`px-3 py-1.5 rounded-md text-xs font-medium transition ${actionLoading[`junior-${item.id}`]
+                                        ? 'bg-gray-300 cursor-not-allowed'
+                                        : 'bg-green-600 hover:bg-green-700 text-white'
+                                        }`}
                                     >
                                       {actionLoading[`junior-${item.id}`] ? 'Verifying...' : 'Verify'}
                                     </button>
@@ -586,11 +584,10 @@ const AdminDashboard = () => {
                                   <button
                                     onClick={() => handleDelete('junior', item.id)}
                                     disabled={actionLoading[`delete-junior-${item.id}`]}
-                                    className={`px-3 py-1.5 rounded-md text-xs font-medium transition ${
-                                      actionLoading[`delete-junior-${item.id}`]
-                                        ? 'bg-gray-300 cursor-not-allowed text-gray-600'
-                                        : 'bg-red-600 hover:bg-red-700 text-white'
-                                    }`}
+                                    className={`px-3 py-1.5 rounded-md text-xs font-medium transition ${actionLoading[`delete-junior-${item.id}`]
+                                      ? 'bg-gray-300 cursor-not-allowed text-gray-600'
+                                      : 'bg-red-600 hover:bg-red-700 text-white'
+                                      }`}
                                   >
                                     {actionLoading[`delete-junior-${item.id}`] ? 'Deleting...' : 'Delete'}
                                   </button>
@@ -609,7 +606,7 @@ const AdminDashboard = () => {
             {activeTab === 'seniors' && (
               <div>
                 <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-2xl font-bold text-gray-800">
+                  <h2 className="text-2xl font-bold text-white">
                     Senior MCA Students ({seniors.length})
                   </h2>
                   <button
@@ -665,11 +662,10 @@ const AdminDashboard = () => {
                                     <button
                                       onClick={() => handleVerifyStudent('senior', item.id)}
                                       disabled={actionLoading[`senior-${item.id}`]}
-                                      className={`px-3 py-1.5 rounded-md text-xs font-medium transition ${
-                                        actionLoading[`senior-${item.id}`]
-                                          ? 'bg-gray-300 cursor-not-allowed'
-                                          : 'bg-green-600 hover:bg-green-700 text-white'
-                                      }`}
+                                      className={`px-3 py-1.5 rounded-md text-xs font-medium transition ${actionLoading[`senior-${item.id}`]
+                                        ? 'bg-gray-300 cursor-not-allowed'
+                                        : 'bg-green-600 hover:bg-green-700 text-white'
+                                        }`}
                                     >
                                       {actionLoading[`senior-${item.id}`] ? 'Verifying...' : 'Verify'}
                                     </button>
@@ -678,11 +674,10 @@ const AdminDashboard = () => {
                                   <button
                                     onClick={() => handleDelete('senior', item.id)}
                                     disabled={actionLoading[`delete-senior-${item.id}`]}
-                                    className={`px-3 py-1.5 rounded-md text-xs font-medium transition ${
-                                      actionLoading[`delete-senior-${item.id}`]
-                                        ? 'bg-gray-300 cursor-not-allowed text-gray-600'
-                                        : 'bg-red-600 hover:bg-red-700 text-white'
-                                    }`}
+                                    className={`px-3 py-1.5 rounded-md text-xs font-medium transition ${actionLoading[`delete-senior-${item.id}`]
+                                      ? 'bg-gray-300 cursor-not-allowed text-gray-600'
+                                      : 'bg-red-600 hover:bg-red-700 text-white'
+                                      }`}
                                   >
                                     {actionLoading[`delete-senior-${item.id}`] ? 'Deleting...' : 'Delete'}
                                   </button>
@@ -701,7 +696,7 @@ const AdminDashboard = () => {
             {activeTab === 'doubts' && (
               <div>
                 <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-2xl font-bold text-gray-800">
+                  <h2 className="text-2xl font-bold text-white">
                     Posted Doubts ({doubts.length})
                   </h2>
 
@@ -717,11 +712,10 @@ const AdminDashboard = () => {
                       <button
                         onClick={handleVerifyAllDoubts}
                         disabled={actionLoading.verifyAllDoubts}
-                        className={`px-6 py-2.5 rounded-lg text-sm font-medium transition shadow-sm ${
-                          actionLoading.verifyAllDoubts
-                            ? 'bg-gray-400 cursor-not-allowed'
-                            : 'bg-green-600 hover:bg-green-700 text-white'
-                        }`}
+                        className={`px-6 py-2.5 rounded-lg text-sm font-medium transition shadow-sm ${actionLoading.verifyAllDoubts
+                          ? 'bg-gray-400 cursor-not-allowed'
+                          : 'bg-green-600 hover:bg-green-700 text-white'
+                          }`}
                       >
                         {actionLoading.verifyAllDoubts ? 'Verifying All...' : 'Verify All Doubts'}
                       </button>
@@ -764,17 +758,16 @@ const AdminDashboard = () => {
                               </td>
                               <td className="px-6 py-4">
                                 <span
-                                  className={`inline-flex px-2.5 py-1 rounded-full text-xs font-medium ${
-                                    doubt.status === 'SOLVED'
-                                      ? 'bg-green-100 text-green-800'
-                                      : doubt.status === 'REJECTED'
+                                  className={`inline-flex px-2.5 py-1 rounded-full text-xs font-medium ${doubt.status === 'SOLVED'
+                                    ? 'bg-green-100 text-green-800'
+                                    : doubt.status === 'REJECTED'
                                       ? 'bg-red-100 text-red-800'
                                       : doubt.status === 'APPROVED'
-                                      ? 'bg-blue-100 text-blue-800'
-                                      : doubt.status === 'PENDING'
-                                      ? 'bg-yellow-100 text-yellow-800'
-                                      : 'bg-gray-100 text-gray-800'
-                                  }`}
+                                        ? 'bg-blue-100 text-blue-800'
+                                        : doubt.status === 'PENDING'
+                                          ? 'bg-yellow-100 text-yellow-800'
+                                          : 'bg-gray-100 text-gray-800'
+                                    }`}
                                 >
                                   {doubt.status || 'Unknown'}
                                 </span>
@@ -785,11 +778,10 @@ const AdminDashboard = () => {
                                     <button
                                       onClick={() => handleVerifyDoubt(doubt.id)}
                                       disabled={actionLoading[`doubt-${doubt.id}`]}
-                                      className={`px-3 py-1.5 rounded-md text-xs font-medium transition min-w-[70px] ${
-                                        actionLoading[`doubt-${doubt.id}`]
-                                          ? 'bg-gray-300 cursor-not-allowed'
-                                          : 'bg-green-600 hover:bg-green-700 text-white'
-                                      }`}
+                                      className={`px-3 py-1.5 rounded-md text-xs font-medium transition min-w-[70px] ${actionLoading[`doubt-${doubt.id}`]
+                                        ? 'bg-gray-300 cursor-not-allowed'
+                                        : 'bg-green-600 hover:bg-green-700 text-white'
+                                        }`}
                                     >
                                       {actionLoading[`doubt-${doubt.id}`] ? '...' : 'Verify'}
                                     </button>
@@ -797,11 +789,10 @@ const AdminDashboard = () => {
                                     <button
                                       onClick={() => handleRejectDoubt(doubt.id)}
                                       disabled={actionLoading[`doubt-${doubt.id}`]}
-                                      className={`px-3 py-1.5 rounded-md text-xs font-medium transition min-w-[70px] ${
-                                        actionLoading[`doubt-${doubt.id}`]
-                                          ? 'bg-gray-300 cursor-not-allowed'
-                                          : 'bg-red-600 hover:bg-red-700 text-white'
-                                      }`}
+                                      className={`px-3 py-1.5 rounded-md text-xs font-medium transition min-w-[70px] ${actionLoading[`doubt-${doubt.id}`]
+                                        ? 'bg-gray-300 cursor-not-allowed'
+                                        : 'bg-red-600 hover:bg-red-700 text-white'
+                                        }`}
                                     >
                                       {actionLoading[`doubt-${doubt.id}`] ? '.' : 'Reject'}
                                     </button>
@@ -823,7 +814,7 @@ const AdminDashboard = () => {
             {activeTab === 'help' && (
               <div>
                 <div className="flex justify-between items-center mb-6 flex-wrap gap-4">
-                  <h2 className="text-2xl font-bold text-gray-800">
+                  <h2 className="text-2xl font-bold text-white">
                     {activeHelpCategory === 'SOLVED' ? 'Solved Problems' : 'Help Requests'} ({filteredHelpRequests.length})
                   </h2>
                   <button
@@ -845,11 +836,10 @@ const AdminDashboard = () => {
                     <button
                       key={type.key}
                       onClick={() => setActiveHelpCategory(type.key)}
-                      className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
-                        activeHelpCategory === type.key
-                          ? 'bg-indigo-600 text-white'
-                          : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
-                      }`}
+                      className={`px-4 py-2 rounded-lg text-sm font-medium transition ${activeHelpCategory === type.key
+                        ? 'bg-indigo-600 text-white'
+                        : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                        }`}
                     >
                       {type.label}
                     </button>
@@ -877,11 +867,10 @@ const AdminDashboard = () => {
                                 {item.normalizedType}
                               </span>
                               <span
-                                className={`inline-flex px-3 py-1 rounded-full text-xs font-semibold ${
-                                  (item.status || 'PENDING') === 'RESOLVED'
-                                    ? 'bg-green-100 text-green-700'
-                                    : 'bg-yellow-100 text-yellow-700'
-                                }`}
+                                className={`inline-flex px-3 py-1 rounded-full text-xs font-semibold ${(item.status || 'PENDING') === 'RESOLVED'
+                                  ? 'bg-green-100 text-green-700'
+                                  : 'bg-yellow-100 text-yellow-700'
+                                  }`}
                               >
                                 {item.status || 'PENDING'}
                               </span>
@@ -931,11 +920,10 @@ const AdminDashboard = () => {
                           <button
                             onClick={() => handleResolveHelpRequest(item.id)}
                             disabled={actionLoading[`help-${item.id}`]}
-                            className={`px-5 py-2 rounded-lg text-sm font-medium transition ${
-                              actionLoading[`help-${item.id}`]
-                                ? 'bg-gray-300 cursor-not-allowed text-gray-600'
-                                : 'bg-green-600 hover:bg-green-700 text-white'
-                            }`}
+                            className={`px-5 py-2 rounded-lg text-sm font-medium transition ${actionLoading[`help-${item.id}`]
+                              ? 'bg-gray-300 cursor-not-allowed text-gray-600'
+                              : 'bg-green-600 hover:bg-green-700 text-white'
+                              }`}
                           >
                             {actionLoading[`help-${item.id}`] ? 'Updating...' : 'Mark as Resolved'}
                           </button>
@@ -950,7 +938,7 @@ const AdminDashboard = () => {
             {activeTab === 'leaderboard' && (
               <div>
                 <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-2xl font-bold text-gray-800">
+                  <h2 className="text-2xl font-bold text-white">
                     Leaderboard ({leaderboard.length})
                   </h2>
                   <button
